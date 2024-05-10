@@ -1,16 +1,16 @@
 import { S3Client } from "@aws-sdk/client-s3";
 import { PassThrough } from "stream";
 
-type Callback<T> = (error: Error | null, result?: T) => void;
+export type Callback<T> = (error: Error | null, result?: T) => void;
 
-interface Transformer<T = unknown, U = unknown> {
+export interface Transformer<T = unknown, U = unknown> {
   id: string;
   key: (req: T, file: U, cb: Callback<string>) => void;
   transform: (req: T, file: U, cb: Callback<PassThrough>) => void;
   getContentType?: (req: T, file: U, cb: Callback<string>) => void;
 }
 
-interface S3StorageOptions<T = unknown, U = unknown> {
+export interface S3StorageOptions<T = unknown, U = unknown> {
   s3: S3Client;
   bucket: string | ((req: T, file: U, cb: Callback<string>) => void);
   key?: string | ((req: T, file: U, cb: Callback<string>) => void);
@@ -27,7 +27,7 @@ interface S3StorageOptions<T = unknown, U = unknown> {
   transformers?: Transformer<T, U>[];
 }
 
-interface S3Storage<T = unknown, U = unknown> {
+export type S3Storage<T = unknown, U = unknown> = multer.StorageEngine & {
   s3: S3Client;
   getBucket: (req: T, file: U, cb: Callback<string>) => void;
   getKey: (req: T, file: U, cb: Callback<string>) => void;
@@ -47,7 +47,9 @@ interface S3Storage<T = unknown, U = unknown> {
   _removeFile: (req: T, file: U, cb: Callback<void>) => void;
 }
 
-type MulterS3 = <T = unknown, U = unknown>(opts: S3StorageOptions<T, U>) => S3Storage<T, U>;
+export type MulterS3 = <T = unknown, U = unknown>(opts: S3StorageOptions<T, U>) => S3Storage<T, U>;
 
-type AutoContentType = <T = unknown, U = unknown>(req: T, file: U, cb: Callback<string>) => void;
-type DefaultContentType = <T = unknown, U = unknown>(req: T, file: U, cb: Callback<string>) => void;
+export type AutoContentType = <T = unknown, U = unknown>(req: T, file: U, cb: Callback<string>) => void;
+export type DefaultContentType = <T = unknown, U = unknown>(req: T, file: U, cb: Callback<string>) => void;
+
+export function multerS3<T = unknown, U = unknown>(opts: S3StorageOptions<T, U>): S3Storage<T, U>;
