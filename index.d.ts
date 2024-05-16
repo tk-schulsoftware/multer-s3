@@ -1,4 +1,5 @@
 import { S3Client } from "@aws-sdk/client-s3";
+import multer from "@koa/multer";
 import { PassThrough } from "stream";
 
 export type Callback<T> = (error: Error | null, result?: T) => void;
@@ -27,7 +28,7 @@ export interface S3StorageOptions<T = unknown, U = unknown> {
   transformers?: Transformer<T, U>[];
 }
 
-export type S3Storage<T = unknown, U = unknown> = multer.StorageEngine & {
+export interface S3Storage<T = unknown, U = unknown> extends multer.StorageEngine {
   s3: S3Client;
   getBucket: (req: T, file: U, cb: Callback<string>) => void;
   getKey: (req: T, file: U, cb: Callback<string>) => void;
