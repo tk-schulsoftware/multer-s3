@@ -2,37 +2,32 @@
   "name": "multer-s3",
   "version": "3.0.1",
   "description": "Streaming multer storage engine for AWS S3",
-  "main": "index.js",
-  "type": "commonjs",
-  "scripts": {
-    "test": "standard && mocha test/basic.js"
-  },
-  "engines": {
-    "node": ">= 12.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/badunk/multer-s3.git"
-  },
   "keywords": [
     "multer",
     "s3",
     "amazon",
     "aws"
   ],
-  "author": "badunk",
-  "license": "MIT",
+  "homepage": "https://github.com/badunk/multer-s3#readme",
   "bugs": {
     "url": "https://github.com/badunk/multer-s3/issues"
   },
-  "homepage": "https://github.com/badunk/multer-s3#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/badunk/multer-s3.git"
+  },
+  "license": "MIT",
+  "author": "badunk",
+  "type": "commonjs",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "standard && mocha test/basic.js"
+  },
   "dependencies": {
     "@aws-sdk/lib-storage": "^3.572.0",
     "@koa/multer": "^3.0.2",
     "file-type": "^13.1.2"
-  },
-  "peerDependencies": {
-    "@aws-sdk/client-s3": "^3.0.0"
   },
   "devDependencies": {
     "express": "^4.19.2",
@@ -42,5 +37,11 @@
     "on-finished": "^2.4.1",
     "standard": "^17.1.0",
     "xtend": "^4.0.2"
+  },
+  "peerDependencies": {
+    "@aws-sdk/client-s3": "^3.0.0"
+  },
+  "engines": {
+    "node": ">= 12.0.0"
   }
 }

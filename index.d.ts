@@ -1,5 +1,5 @@
 import { S3Client } from "@aws-sdk/client-s3";
-import multer from "@koa/multer";
+import type multer from "@koa/multer";
 import { PassThrough } from "stream";
 
 export type Callback<T> = (error: Error | null, result?: T) => void;
